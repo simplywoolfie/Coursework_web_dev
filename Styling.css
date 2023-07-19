@@ -23,7 +23,7 @@ h2 {
     letter-spacing: .1px;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 12px 20px;
@@ -50,3 +50,31 @@ button {
 button:hover {
     background: #5469d4;
 }
+
+#buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    #register-button {
+        background-color: #6772e5;
+        color: white;
+        padding: 10px 20px;
+
+
+    }
+
+    #login-button {
+        background-color: #e0e0e0;
+        color: #3d3d3d;
+        padding: 10px 20px;
+
+    }
+
+    #register-button:hover {
+        background-color: #5481e6;
+    }
+
+    #login-button:hover {
+        background-color: #d4d4d4;
+    }

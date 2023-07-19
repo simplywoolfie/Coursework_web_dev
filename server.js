@@ -4,9 +4,22 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const app = express();
+const cors = require('cors');
 
-// allow the app to use JSON data
+// allow the app to use JSON data and cors
 app.use(express.json());
+app.use(cors({
+    origin: '*', // allow all origins
+    methods: ['GET', 'POST'], // allow GET and POST requests
+    allowedHeaders: ['Content-Type', 'Authorization'] // allow these headers
+}));
+
+
+// define a GET route for the root URL ("/")
+app.get('/', (req, res) => {
+    res.send('Welcome to our website!');
+});
+
 
 // connect to MongoDB database
 mongoose.connect('mongodb+srv://admin:testing123@cluster0.qy7ocjr.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
