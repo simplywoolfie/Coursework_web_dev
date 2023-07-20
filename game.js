@@ -6,6 +6,10 @@ window.onload = function () {
             question: "20 is _ than the age (in years) of world wide web",
             answer: "less"
         },
+        {
+            question: "A human has _ noses than a slug",
+            answer: "less"
+        },
 
     ];
 
