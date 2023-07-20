@@ -10,7 +10,34 @@ window.onload = function () {
             question: "A human has _ noses than a slug",
             answer: "less"
         },
-
+        {
+            question: "The distance between US and Russia at the closest point is _ than Germany to Lithuania distance",
+            answer: "less"
+        },
+        {
+            question: "Of the total water on Earth, percentage of drinkable freshwater is _ compared to on Mars",
+            answer: "more"
+        },
+        {
+            question: "Population of the UK is _ than Lithuania",
+            answer: "more"
+        },
+        {
+            question: "Number of hours worked by the average person in a lifetime is _ hours of TV an average American watch in a lifetime",
+            answer: "less"
+        },
+        {
+            question: "Calories in a large Avocado is _ than a large apple",
+            answer: "more"
+        },
+        {
+            question: "A cow has _ stomachs than hearts in an octopus",
+            answer: "more"
+        },
+        {
+            question: "Jupiter has _ moons compared to Earth",
+            answer: "more"
+        },
     ];
 
     // Pick a random question from the "questions" array
