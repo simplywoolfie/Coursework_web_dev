@@ -1,3 +1,12 @@
+// Function to encrypt and decrypt a string to prevent the user from accessing the answer via developer tools
+function cipher(text) {
+    let cipherText = '';
+    for (let char of text) {
+        cipherText += String.fromCharCode(char.charCodeAt() ^ 123); // XOR with a number for simplicity
+    }
+    return cipherText;
+}
+
 // Run code when page has finished loading 
 window.onload = function () {
     let score = 0;
