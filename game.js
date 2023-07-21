@@ -1,5 +1,6 @@
 // Run code when page has finished loading 
 window.onload = function () {
+    let score = 0;
     // Array of question objects
     let questions = [
         {
@@ -40,51 +41,63 @@ window.onload = function () {
         },
     ];
 
-    // Pick a random question from the "questions" array
-    let currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    // Saves the total number of questions
+    const totalQuestions = questions.length;
 
-    // Display the current question text in the HTML paragraph with id "question"
-    document.getElementById('question').textContent = currentQuestion.question;
+    // Defines a function to show a message to the player
+    function showMessage(message, color) {
+        const messageElement = document.getElementById('message');
+        messageElement.style.color = color;
+        messageElement.textContent = message;
+    }
 
-    // Event listener to the "More" button
-    document.getElementById('more').addEventListener('click', function () {
-        // "More" button is clicked, call the checkAnswer function with argument "more"
-        checkAnswer('more');
-    });
-
-    // Event listener to the "Less" button
-    document.getElementById('less').addEventListener('click', function () {
-        // When the "Less" button is clicked, call the checkAnswer function with argument "less"
-        checkAnswer('less');
-    });
-
-    // Function to check if the player's guess is correct
+    // Function to check if the player's answer is correct
     function checkAnswer(guess) {
-
         if (guess === currentQuestion.answer) {
-            // Correct answer, colour green to indicate it
+            // If answer correct message shows, green indicates it
             showMessage('Correct answer!', 'green');
+            score++; // Add score by 1 if the answer is correct
         } else {
-            // Wrong answer, colour red to indicate it
-            showMessage('Wrong answer! Try again.', 'red');
+            // If answer wrong message shows, red indicates it
+            showMessage('Wrong answer! The correct answer was ' + currentQuestion.answer + '.', 'red');
         }
 
-        // Get new random question from the 'questions' array
-        currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+        // Removes the answered question from the questions array
+        questions.splice(questions.indexOf(currentQuestion), 1);
 
-        // Display the new question text in the HTML paragraph with id 'question'
-        document.getElementById('question').textContent = currentQuestion.question;
+        // Calculates the percentage of correct answers
+        const percentage = Math.floor((score / totalQuestions) * 100);
+
+        // Displays the score and the percentage of correct answers
+        document.getElementById('score').textContent = 'Score: ' + score + ' (' + percentage + '% correct)';
+
+        // Checks if there are any questions left
+        if (questions.length > 0) {
+            currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+            document.getElementById('question').textContent = currentQuestion.question;
+        } else {
+            // If not then displays a game over message and the final score
+            document.getElementById('question').textContent = 'Game Over! Your final score is ' + score + ' (' + percentage + '% correct).';
+        }
     }
 
-    // Defines a function to display a message to a player
-    function showMessage(msg, color) {
-        // Gets the HTML paragraph with id 'message'
-        let messageElement = document.getElementById('message');
+    // Defines function to handle when the player clicks the "less" button
+    document.getElementById('less').onclick = function () {
+        if (questions.length > 0) {
+            checkAnswer('less');
+        }
+    };
 
-        // Message argument
-        messageElement.textContent = msg;
+    // Defines a function to handle when the player clicks the "more" button
+    document.getElementById('more').onclick = function () {
+        if (questions.length > 0) {
+            checkAnswer('more');
+        }
+    };
 
-        // Sets the colour
-        messageElement.style.color = color;
-    }
+    // Random question from the "questions" array
+    let currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+
+    // Displays the question text in the HTML paragraph with id "question"
+    document.getElementById('question').textContent = currentQuestion.question;
 };
